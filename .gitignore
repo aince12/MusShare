@@ -26,6 +26,7 @@ proguard/
 # Log Files
 *.log
 
+
 # Android Studio Navigation editor temp files
 .navigation/
 
@@ -35,6 +36,10 @@ captures/
 # Intellij
 *.iml
 .idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/dictionaries
+.idea/libraries
 
 # Keystore files
 *.jks
