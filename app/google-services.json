@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "673577727239",
+    "firebase_url": "https://musshare-8b70b.firebaseio.com",
+    "project_id": "musshare-8b70b",
+    "storage_bucket": "musshare-8b70b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673577727239:android:1e596d36abcee8a8",
+        "android_client_info": {
+          "package_name": "com.twinstartech.musshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673577727239-a721khfdbspntcsiuc0p2lgkjg73nbpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdF4jer23exksaCF9qjVdxcZR4TM3oDew"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
