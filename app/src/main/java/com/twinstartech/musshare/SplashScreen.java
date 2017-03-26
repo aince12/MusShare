@@ -84,6 +84,11 @@ public class SplashScreen extends RootActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
+                    //firebase already logged in proceed...
+                    checkLoginDetails();
+
+
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -118,19 +123,19 @@ public class SplashScreen extends RootActivity {
          *
          */
 
-        AccessToken token = AccessToken.getCurrentAccessToken();
-        if(token != null ){
-            if(!TextUtils.isEmpty(token.getToken())) {
-                Log.e(TAG, "Already loggedin!");
-//                LoginManager.getInstance().logOut();
-                handleFacebookAccessToken(AccessToken.getCurrentAccessToken());
-            }
-            else  {
-                btnLogin.setVisibility(View.VISIBLE);
-            }
-        } else  {
-            btnLogin.setVisibility(View.VISIBLE);
-        }
+//        AccessToken token = AccessToken.getCurrentAccessToken();
+//        if(token != null ){
+//            if(!TextUtils.isEmpty(token.getToken())) {
+//                Log.e(TAG, "Already loggedin!");
+////                LoginManager.getInstance().logOut();
+////                handleFacebookAccessToken(AccessToken.getCurrentAccessToken());
+//            }
+//            else  {
+//                btnLogin.setVisibility(View.VISIBLE);
+//            }
+//        } else  {
+//            btnLogin.setVisibility(View.VISIBLE);
+//        }
     }
 
 

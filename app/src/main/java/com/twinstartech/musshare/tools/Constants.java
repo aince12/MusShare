@@ -2,6 +2,8 @@ package com.twinstartech.musshare.tools;
 
 import java.util.ArrayList;
 
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
 import com.twinstartech.musshare.models.Music;
 import com.twinstartech.musshare.models.User;
 
@@ -15,5 +17,17 @@ public class Constants {
 
     public static ArrayList<Music> allMusic = new ArrayList<>();
     public static User currentUser;
+
+
+    public static MussharePlayer currentPlayer= null;
+
+
+    public static void logoutCurrentUser(){
+
+        FirebaseAuth.getInstance().signOut();
+
+        //if signed in using facebook;
+        LoginManager.getInstance().logOut();
+    }
 }
 

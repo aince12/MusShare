@@ -60,7 +60,8 @@
                    android:id="@+id/sbPlayerTracker"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:max="99"/>
+                   android:max="100"
+                   android:thumbTint="@android:color/white"/>
 
            </LinearLayout>
             <FrameLayout
@@ -71,21 +72,29 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:layout_gravity="center">
-                    <Button
+                    <ImageButton
                         android:id="@+id/btnPrevious"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:text="PR"
-                        android:gravity="center"/>
-                    <Button
+                        android:gravity="center"
+                        android:src="@mipmap/ic_skip_previous_white"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"/>
+                    <ImageButton
+                        android:id="@+id/btnPlayPause"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
-                        android:text="P"/>
-                    <Button
+                        android:src="@mipmap/ic_play_circle_outline_white"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"/>
+                    <ImageButton
                         android:id="@+id/btnNext"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
-                        android:text="Ne"/>
+                        android:src="@mipmap/ic_skip_next_white"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"/>
 
                 </LinearLayout>
             </FrameLayout>

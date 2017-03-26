@@ -2,6 +2,7 @@ package com.twinstartech.musshare;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -13,8 +14,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.twinstartech.musshare.models.Music;
 import com.twinstartech.musshare.tools.Constants;
 import com.twinstartech.musshare.tools.MussharePlayer;
-
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +34,18 @@ public class PlayerActivity extends RootActivity {
     SeekBar sbPlayerTrack;
 
 
+    @BindView(R.id.btnNext)
+    ImageButton btnNext;
+    @BindView(R.id.btnPlayPause)
+    ImageButton btnPlayPause;
+    @BindView(R.id.btnPrevious)
+    ImageButton btnPrevious;
+
     private MussharePlayer player;
+
+    /**
+     *  Media device commands listener, ex: headset
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,11 @@ public class PlayerActivity extends RootActivity {
         ButterKnife.bind(this);
         startPlaying();
     }
+
+
+
+
+
 
     @OnClick(R.id.btnNext)
     void next(){
@@ -55,6 +70,16 @@ public class PlayerActivity extends RootActivity {
         if(player!=null)
             player.playPrevious();
     }
+    @OnClick(R.id.btnPlayPause)
+    void playPause(){
+        Log.e(TAG,"PlayPause fired");
+        if(player!=null)
+        if(player.isPlaying())
+            player.pause();
+        else
+            player.play();
+    }
+
     void startPlaying(){
 
         database = FirebaseDatabase.getInstance().getReference();
@@ -79,6 +104,7 @@ public class PlayerActivity extends RootActivity {
                                 .setSeekBar(sbPlayerTrack)
                                 .setMusicHeaderText(tvNowPlaying)
                                 .setDisplayTimers(tvDisplayTimers)
+                                .setPlaybackControls(btnPrevious,btnPlayPause, btnNext)
                                 .play();
 
                     }
@@ -93,4 +119,17 @@ public class PlayerActivity extends RootActivity {
             }
         });
     }
+
+
+
+
+    @Override
+    protected void onDestroy() {
+        if(player!=null)
+            player.onDestroy();
+
+        super.onDestroy();
+    }
+
+
 }
