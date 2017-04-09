@@ -136,6 +136,15 @@ public class MussharePlayer {
 
     public MussharePlayer setMusicHeaderText(TextView tvMusicHeaderText) {
         this.tvMusicHeaderText = tvMusicHeaderText;
+
+        if(player!=null) {
+            //for resetting new views or on resume
+            if (isPlaying())
+                tvMusicHeaderText.setText("Now Playing: " + currentTrack.title + " by " + currentTrack.artist);
+            else
+                tvMusicHeaderText.setText("Loading: " + currentTrack.title + " by " + currentTrack.artist);
+        }
+
         return MussharePlayer.this;
     }
 
@@ -367,4 +376,26 @@ public class MussharePlayer {
         return player.isPlaying();
     }
 
+
+    /**
+     *
+     * Public track info
+     *
+     */
+
+    public String getCurrentTrackTitle(){return this.currentTrack.title;}
+    public String getCurrentTrackArtist(){return this.currentTrack.artist;}
+    public boolean isNextAllowed(){return canPlayNext();}
+    public boolean isPreviousAllowed(){return canPlayPrevious();}
+
+    public void isActivityPaused(boolean activityPaused){
+        if(activityPaused)
+            handler.removeCallbacks(UIUpdater);
+        else {
+
+            //try syncing the timer
+            Log.e(TAG,"Current Pos: "+player.getCurrentPosition());
+            handler.postDelayed(UIUpdater, player.getCurrentPosition()%1000);
+        }
+    }
 }

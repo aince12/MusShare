@@ -1,5 +1,7 @@
 package com.twinstartech.musshare;
 
+import android.content.Intent;
+import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -14,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.twinstartech.musshare.models.Music;
 import com.twinstartech.musshare.tools.Constants;
 import com.twinstartech.musshare.tools.MussharePlayer;
+import com.twinstartech.musshare.tools.notificationplayer.NotificationService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -132,4 +135,37 @@ public class PlayerActivity extends RootActivity {
     }
 
 
+    protected void onPause() {
+
+
+        Intent service = new Intent(PlayerActivity.this, NotificationService.class);
+        service.setAction(Constants.ACTION.STARTFOREGROUND_ACTION);
+        startService(service);
+
+
+
+        if(player!=null){
+            player.isActivityPaused(true);
+        }
+
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        player = Constants.currentPlayer;
+
+        if(player!=null){
+
+            player.setSeekBar(sbPlayerTrack)
+                    .setMusicHeaderText(tvNowPlaying)
+                    .setDisplayTimers(tvDisplayTimers)
+                    .setPlaybackControls(btnPrevious,btnPlayPause, btnNext);
+
+                player.isActivityPaused(false);
+        }
+    }
 }
